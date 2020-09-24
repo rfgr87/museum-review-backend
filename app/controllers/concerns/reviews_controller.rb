@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
         render json: {error: 'error creating review'}
       end
     end
-  
+
     def destroy
       @review = Review.find(params["id"])
       @museum = Museum.find(@review.museum_id)
@@ -39,3 +39,5 @@ class ReviewsController < ApplicationController
     end
     
 end
+
+//

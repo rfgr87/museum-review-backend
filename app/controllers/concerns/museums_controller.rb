@@ -1,4 +1,4 @@
-class MuseumController < ApplicationController
+class MuseumsController < ApplicationController
 
     def index
       @museums = Museum.all
@@ -33,7 +33,7 @@ class MuseumController < ApplicationController
 
     private
 
-    def account_params
+    def museum_params
       params.require(:museum).permit(:name)
     end
 

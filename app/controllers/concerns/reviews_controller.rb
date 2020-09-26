@@ -1,6 +1,4 @@
 class ReviewsController < ApplicationController
-
-    before_action :set_account
   
     def index
       @reviews = Review.all
@@ -13,11 +11,12 @@ class ReviewsController < ApplicationController
     end
   
     def create
-      @review = @museum.review.new(review_params)
+      @museum = Museum.find(params[:museum_id])
+      @review = @museum.reviews.new(review_params)
       if @review.save
         render json: @review
       else
-        render json: {error: 'error creating review'}
+        render json: {error: @review.errors.full_messages.join(' ')}
       end
     end
 
@@ -35,9 +34,7 @@ class ReviewsController < ApplicationController
     private
   
     def review_params
-      params.require(:review).permit(:review, :museum_id)
+      params.require(:review).permit(:review)
     end
     
 end
-
-//
